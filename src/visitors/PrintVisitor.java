@@ -1,6 +1,6 @@
 package visitors;
 
-import interfaces.LeafListI;
+import interfaces.LeafCollectionI;
 import interfaces.TreeI;
 import interfaces.VisitorI;
 
@@ -12,7 +12,7 @@ public class PrintVisitor implements VisitorI {
     }
 
     @Override
-    public void visit(LeafListI leafList) {
+    public void visit(LeafCollectionI leafList) {
         System.out.println("LEAVES of type " + leafList.getTypeName());
     }
 

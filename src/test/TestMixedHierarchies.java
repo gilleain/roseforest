@@ -1,10 +1,11 @@
 package test;
 
-import interfaces.LeafListI;
+import interfaces.LeafCollectionI;
 import interfaces.TreeI;
-import leaflist.AtomList;
-import leaflist.ResidueList;
-import leaflist.SSEList;
+import leaf.AtomList;
+import leaf.AtomSet;
+import leaf.ResidueList;
+import leaf.SSEList;
 
 import org.junit.Test;
 
@@ -24,8 +25,8 @@ public class TestMixedHierarchies {
     @Test
     public void makeResidueChain() {
         TreeI chain = new Chain();
-        LeafListI residueList = new ResidueList();
-        chain.addLeafList(residueList);
+        LeafCollectionI residueList = new ResidueList();
+        chain.addLeaves(residueList);
         
         printVisit(chain);
     }
@@ -33,8 +34,8 @@ public class TestMixedHierarchies {
     @Test
     public void makeAtomChain() {
         TreeI chain = new Chain();
-        LeafListI atomList = new AtomList();
-        chain.addLeafList(atomList);
+        LeafCollectionI atomList = new AtomList();
+        chain.addLeaves(atomList);
         
         printVisit(chain);
     }
@@ -42,21 +43,21 @@ public class TestMixedHierarchies {
     @Test
     public void makeAtomResidueSSEChain() {
         TreeI atom = new Atom();
-        LeafListI atomList = new AtomList();
-        atomList.addLeaf(atom);
+        LeafCollectionI atomSet = new AtomSet();
+        atomSet.addLeaf(atom);
         
         TreeI residue = new Residue();
-        residue.addLeafList(atomList);
-        LeafListI residueList = new ResidueList();
+        residue.addLeaves(atomSet);
+        LeafCollectionI residueList = new ResidueList();
         residueList.addLeaf(residue);
         
         TreeI sse = new SSE();
-        sse.addLeafList(residueList);
-        LeafListI sseList = new SSEList();
+        sse.addLeaves(residueList);
+        LeafCollectionI sseList = new SSEList();
         sseList.addLeaf(sse);
         
         TreeI chain = new Chain();
-        chain.addLeafList(sseList);
+        chain.addLeaves(sseList);
         
         printVisit(chain);
     }
