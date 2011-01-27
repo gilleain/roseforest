@@ -18,6 +18,10 @@ public abstract class AbstractTree implements TreeI {
         return this.label;
     }
     
+    public Integer getID() {
+        return -1;  // TODO
+    }
+    
     public void addLeaves(LeafCollectionI leafList) {
         this.leafCollection = leafList;
     }

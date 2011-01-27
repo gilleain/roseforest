@@ -3,6 +3,8 @@ package leaf;
 import java.util.Collection;
 import java.util.Iterator;
 
+import matchers.Match;
+
 import interfaces.LeafCollectionI;
 import interfaces.TreeI;
 import interfaces.VisitorI;
@@ -23,7 +25,8 @@ public abstract class AbstractLeafCollection implements LeafCollectionI {
         return leaves.iterator();
     }
     
-    public TreeI getChild(int dfsIndex) {
+    public TreeI getChild(Match match) {
+        int last = match.getLast();
         return null;    // TODO
     }
     

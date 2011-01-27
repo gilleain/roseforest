@@ -6,23 +6,25 @@ import interfaces.TreeI;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChildListMatcher {
+public class LeafListMatcher implements LeafMatcherI {
     
     private NodeMatcher nodeMatcher;
     
-    private ChildListMatcher subMatcher;
+    private LeafMatcherI subMatcher;
     
-    public ChildListMatcher(NodeMatcher nodeMatcher, ChildListMatcher subMatcher) {
+    public LeafListMatcher(NodeMatcher nodeMatcher, LeafMatcherI subMatcher) {
         this.nodeMatcher = nodeMatcher;
         this.subMatcher = subMatcher;
     }
     
     public List<Match> match(LeafCollectionI pattern, LeafCollectionI structure) {
         List<Match> matches = new ArrayList<Match>();
+        if (pattern == null || structure == null) return matches;
+        
         for (TreeI childStructure : structure) {
             List<Match> extendedMatches = new ArrayList<Match>();
             for (Match match : matches) {
-                TreeI childPattern = pattern.getChild(match.last() + 1);
+                TreeI childPattern = pattern.getChild(match);
                 // extend the match
                 if (nodeMatcher.match(childPattern, childStructure)) {
                     match.add(childStructure);

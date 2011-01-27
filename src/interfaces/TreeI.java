@@ -12,5 +12,7 @@ public interface TreeI extends VisitableI {
     public String getTypeName();
 
     public LeafCollectionI getLeaves();
+
+    public Integer getID();
     
 }
