@@ -5,11 +5,25 @@ import interfaces.TreeI;
 import interfaces.VisitorI;
 
 public abstract class AbstractTree implements TreeI {
+
+    private String label;
     
     private LeafCollectionI leafCollection;
     
+    public void setLabel(String label) {
+        this.label = label;
+    }
+    
+    public String getLabel() {
+        return this.label;
+    }
+    
     public void addLeaves(LeafCollectionI leafList) {
         this.leafCollection = leafList;
+    }
+    
+    public LeafCollectionI getLeaves() {
+        return leafCollection;
     }
     
     public void accept(VisitorI visitor) {

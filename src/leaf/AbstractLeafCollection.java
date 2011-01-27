@@ -1,6 +1,7 @@
 package leaf;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import interfaces.LeafCollectionI;
 import interfaces.TreeI;
@@ -16,6 +17,18 @@ public abstract class AbstractLeafCollection implements LeafCollectionI {
     
     public void addLeaf(TreeI leaf) {
         leaves.add(leaf);
+    }
+    
+    public Iterator<TreeI> iterator() {
+        return leaves.iterator();
+    }
+    
+    public TreeI getChild(int dfsIndex) {
+        return null;    // TODO
+    }
+    
+    public TreeI first() {
+        return null;    // TODO
     }
     
     public abstract void visit(VisitorI visitor);
