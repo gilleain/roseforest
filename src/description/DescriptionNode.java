@@ -11,6 +11,10 @@ public class DescriptionNode extends AbstractTree {
         label = null;
     }
     
+    public DescriptionNode(String label) {
+        this.label = label;
+    }
+    
     public void setLabel(String label) {
         this.label = label;
     }

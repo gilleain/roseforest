@@ -1,23 +1,28 @@
 package matchers;
 
-import interfaces.LeafCollectionI;
 import interfaces.TreeI;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeafListMatcher implements LeafMatcherI {
+import leaf.AbstractLeafList;
+
+public class LeafListMatcher implements MatcherI<AbstractLeafList> {
     
     private NodeMatcher nodeMatcher;
     
-    private LeafMatcherI subMatcher;
+    private MatcherI subMatcher;
     
-    public LeafListMatcher(NodeMatcher nodeMatcher, LeafMatcherI subMatcher) {
+    public LeafListMatcher(MatcherI subMatcher) {
+        this(new NodeMatcher(), subMatcher);
+    }
+    
+    public LeafListMatcher(NodeMatcher nodeMatcher, MatcherI subMatcher) {
         this.nodeMatcher = nodeMatcher;
         this.subMatcher = subMatcher;
     }
     
-    public List<Match> match(LeafCollectionI pattern, LeafCollectionI structure) {
+    public List<Match> match(AbstractLeafList pattern, AbstractLeafList structure) {
         List<Match> matches = new ArrayList<Match>();
         if (pattern == null || structure == null) return matches;
         
@@ -29,6 +34,9 @@ public class LeafListMatcher implements LeafMatcherI {
                 if (nodeMatcher.match(childPattern, childStructure)) {
                     match.add(childStructure);
                     extend(match, childPattern, childStructure, extendedMatches);
+                } else {
+                    // if it can't be extended, carry it over unchanged
+                    extendedMatches.add(match);
                 }
             }
             
@@ -39,14 +47,17 @@ public class LeafListMatcher implements LeafMatcherI {
             TreeI childPattern = pattern.first();
             if (nodeMatcher.match(childPattern, childStructure)) {
                 Match match = new Match(childStructure);
+                System.out.println("new match " + match);
                 extend(match, childPattern, childStructure, matches);
             }
         }
+        System.out.println(matches);
         return matches;
     }
 
     public void extend(Match match, TreeI childPattern, 
                        TreeI childStructure, List<Match> matchList) {
+        if (subMatcher == null) return;
         List<Match> subMatches = subMatcher.match(
                 childPattern.getLeaves(), childStructure.getLeaves());
         if (subMatches.size() == 0) {

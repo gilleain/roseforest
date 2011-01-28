@@ -10,6 +10,14 @@ public abstract class AbstractTree implements TreeI {
     
     private LeafCollectionI leafCollection;
     
+    public AbstractTree() {
+        setLabel(null);
+    }
+    
+    public AbstractTree(String label) {
+        setLabel(label);
+    }
+    
     public void setLabel(String label) {
         this.label = label;
     }

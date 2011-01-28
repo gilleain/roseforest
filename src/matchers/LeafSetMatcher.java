@@ -2,22 +2,23 @@ package matchers;
 
 import java.util.List;
 
+import leaf.AbstractLeafSet;
+
 import interfaces.LeafCollectionI;
 import interfaces.TreeI;
 
-public class LeafSetMatcher implements LeafMatcherI {
+public class LeafSetMatcher implements MatcherI<AbstractLeafSet> {
     
  private NodeMatcher nodeMatcher;
     
-    private LeafMatcherI subMatcher;
+    private MatcherI subMatcher;
     
-    public LeafSetMatcher(NodeMatcher nodeMatcher, LeafMatcherI subMatcher) {
+    public LeafSetMatcher(NodeMatcher nodeMatcher, MatcherI subMatcher) {
         this.nodeMatcher = nodeMatcher;
         this.subMatcher = subMatcher;
     }
 
-    @Override
-    public List<Match> match(LeafCollectionI pattern, LeafCollectionI structure) {
+    public List<Match> match(AbstractLeafSet pattern, AbstractLeafSet structure) {
         // TODO Auto-generated method stub
         return null;
     }
