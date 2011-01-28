@@ -43,11 +43,11 @@ public abstract class AbstractLeafList implements LeafCollectionI {
     
     public TreeI getChild(Match match) {
         int last = match.getLast();
-        if (last < leaves.size()) {
-            return leaves.get(last + 1);
-        } else {
-            return null;
+        // faster lookup if leaves were a linked list
+        for (TreeI leaf : leaves) {
+            if (leaf.getID() == last) return leaf;
         }
+        return null;
     }
 
 }

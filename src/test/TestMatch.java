@@ -13,6 +13,7 @@ import matchers.TopLevelMatcher;
 import org.junit.Test;
 
 import tree.Chain;
+import visitors.DFSNumberVisitor;
 
 import description.DescriptionList;
 import description.DescriptionNode;
@@ -55,6 +56,8 @@ public class TestMatch {
             addDescriptionList(node, residuePatternLabels[i]);
             i++;
         }
+        pattern.accept(new DFSNumberVisitor());
+//        pattern.accept(new visitors.PrintVisitor());
         
         Chain structure = new Chain();
         addDescriptionList(structure, "H", "E", "H", "E");
@@ -68,11 +71,15 @@ public class TestMatch {
             addDescriptionList(node, residueLabels[j]);
             j++;
         }
+        structure.accept(new DFSNumberVisitor());
+//        structure.accept(new visitors.PrintVisitor());
         
         TopLevelMatcher topLevelMatcher = 
             new TopLevelMatcher(new LeafListMatcher(new LeafListMatcher(null)));
         List<Match> matches = topLevelMatcher.match(pattern, structure);
-        System.out.println(matches);
+        for (Match match : matches) {
+            System.out.println("match : " + match);
+        }
     }
 
 }

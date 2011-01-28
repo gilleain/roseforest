@@ -13,6 +13,8 @@ public interface TreeI extends VisitableI {
 
     public LeafCollectionI getLeaves();
 
-    public Integer getID();
+    public int getID();
+
+    public void setID(int number);
     
 }

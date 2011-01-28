@@ -8,6 +8,8 @@ public abstract class AbstractTree implements TreeI {
 
     private String label;
     
+    private int id;
+    
     private LeafCollectionI leafCollection;
     
     public AbstractTree() {
@@ -26,8 +28,12 @@ public abstract class AbstractTree implements TreeI {
         return this.label;
     }
     
-    public Integer getID() {
-        return -1;  // TODO
+    public int getID() {
+        return id;
+    }
+    
+    public void setID(int id) {
+        this.id = id;
     }
     
     public void addLeaves(LeafCollectionI leafList) {

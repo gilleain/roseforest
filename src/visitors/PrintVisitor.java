@@ -8,7 +8,7 @@ public class PrintVisitor implements VisitorI {
 
     @Override
     public void visit(TreeI tree) {
-        System.out.println("TREE of type " + tree.getTypeName());
+        System.out.println("TREE of type " + tree.getTypeName() + " " + tree.getID());
     }
 
     @Override
