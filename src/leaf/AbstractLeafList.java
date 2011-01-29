@@ -37,15 +37,26 @@ public abstract class AbstractLeafList implements LeafCollectionI {
         }
     }
     
+    public int getTotalLeafCount() {
+        int count = 0;
+        for (TreeI leaf : leaves) {
+            count += leaf.getTotalLeafCount();
+        }
+        return count;
+    }
+    
     public TreeI first() {
         return leaves.get(0);
     }
     
     public TreeI getChild(Match match) {
-        int last = match.getLast();
+        int size = match.getSize();
         // faster lookup if leaves were a linked list
+        int targetIndex = leaves.get(0).getID() + size;
         for (TreeI leaf : leaves) {
-            if (leaf.getID() == last + 1) return leaf;
+            if (leaf.getID() == targetIndex) {
+                return leaf;
+            }
         }
         return null;
     }

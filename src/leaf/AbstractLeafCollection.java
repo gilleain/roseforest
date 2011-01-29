@@ -23,6 +23,14 @@ public abstract class AbstractLeafCollection implements LeafCollectionI {
         return leaves.iterator();
     }
     
+    public int getTotalLeafCount() {
+        int count = 0;
+        for (TreeI leaf : leaves) {
+            count += leaf.getTotalLeafCount();
+        }
+        return count;
+    }
+    
     public abstract void visit(VisitorI visitor);
 
     @Override

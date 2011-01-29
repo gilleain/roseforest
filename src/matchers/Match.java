@@ -33,14 +33,18 @@ public class Match {
         return ids.get(ids.size() - 1);
     }
     
-    public String toString() {
-        return ids.toString();
-    }
-
     public Match extend(TreeI structure) {
         Match copy = new Match(this);
         copy.add(structure);
         return copy;
+    }
+
+    public int getSize() {
+        return ids.size();
+    }
+
+    public String toString() {
+        return ids.toString();
     }
 
 }

@@ -40,6 +40,14 @@ public abstract class AbstractTree implements TreeI {
         this.leafCollection = leafList;
     }
     
+    public int getTotalLeafCount() {
+        if (leafCollection != null) {
+            return leafCollection.getTotalLeafCount();
+        } else {
+            return 1;
+        }
+    }
+    
     public LeafCollectionI getLeaves() {
         return leafCollection;
     }

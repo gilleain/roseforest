@@ -9,6 +9,8 @@ public interface TreeI extends VisitableI {
     
     public void addLeaves(LeafCollectionI leafList);
     
+    public int getTotalLeafCount();
+    
     public String getTypeName();
 
     public LeafCollectionI getLeaves();

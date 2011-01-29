@@ -31,18 +31,14 @@ public class LeafListMatcher implements MatcherI<AbstractLeafList> {
             List<Match> extendedMatches = new ArrayList<Match>();
             for (Match match : matches) {
                 TreeI childPattern = pattern.getChild(match);
+                System.out.println("getting pattern " + childPattern + " for " + match);
                 // extend the match
                 if (nodeMatcher.match(childPattern, childStructure)) {
                     Match matchCopy = match.extend(childStructure);
                     extend(matchCopy, childPattern, childStructure, extendedMatches);
-                } else {
-                    // if it can't be extended, carry it over unchanged
-//                    extendedMatches.add(match);
-                }
+                } 
             }
             
-            // only those matches that have been extended are saved
-//            matches = extendedMatches;
             matches.addAll(extendedMatches);
             
             // create new matches

@@ -7,4 +7,6 @@ public interface LeafCollectionI extends VisitableI, Iterable<TreeI> {
     
     public void addLeaf(TreeI leaf);
 
+    public int getTotalLeafCount();
+
 }
