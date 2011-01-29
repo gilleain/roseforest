@@ -5,14 +5,17 @@ import java.util.List;
 import interfaces.LeafCollectionI;
 import interfaces.TreeI;
 
+import leaf.ResidueList;
+import leaf.SSEList;
 import matchers.LeafListMatcher;
 import matchers.Match;
-import matchers.NodeMatcher;
 import matchers.TopLevelMatcher;
 
 import org.junit.Test;
 
 import tree.Chain;
+import tree.Residue;
+import tree.SSE;
 import visitors.DFSNumberVisitor;
 
 import description.DescriptionList;
@@ -60,15 +63,24 @@ public class TestMatch {
 //        pattern.accept(new visitors.PrintVisitor());
         
         Chain structure = new Chain();
-        addDescriptionList(structure, "H", "E", "H", "E");
+        String[] sseLabels = new String[] { "H", "E", "H", "E"};
+        LeafCollectionI sseList = new SSEList();
+        for (String sseLabel : sseLabels) {
+            sseList.addLeaf(new SSE(sseLabel));
+        }
+        structure.addLeaves(sseList);
         String[][] residueLabels = new String[4][];
         residueLabels[0] = new String[] {"Y", "G"};
         residueLabels[1] = new String[] {"A", "G"};
         residueLabels[2] = new String[] {"Y", "G"};
         residueLabels[3] = new String[] {"A", "G"};
         int j = 0;
-        for (TreeI node : structure.getLeaves()) {
-            addDescriptionList(node, residueLabels[j]);
+        for (TreeI sse : structure.getLeaves()) {
+            LeafCollectionI residueLeaves = new ResidueList(); 
+            for (String residueLabel : residueLabels[j]) {
+                residueLeaves.addLeaf(new Residue(residueLabel));
+            }
+            sse.addLeaves(residueLeaves);
             j++;
         }
         structure.accept(new DFSNumberVisitor());

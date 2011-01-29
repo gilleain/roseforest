@@ -30,7 +30,7 @@ public class DescriptionNode extends AbstractTree {
 
     @Override
     public void visit(VisitorI visitor) {
-        System.out.println("visiting description");
+//        System.out.println("visiting description");
     }
 
 }

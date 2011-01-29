@@ -45,7 +45,7 @@ public abstract class AbstractLeafList implements LeafCollectionI {
         int last = match.getLast();
         // faster lookup if leaves were a linked list
         for (TreeI leaf : leaves) {
-            if (leaf.getID() == last) return leaf;
+            if (leaf.getID() == last + 1) return leaf;
         }
         return null;
     }

@@ -27,24 +27,27 @@ public class LeafListMatcher implements MatcherI<AbstractLeafList> {
         if (pattern == null || structure == null) return matches;
         
         for (TreeI childStructure : structure) {
+            System.out.println("structure " + childStructure + " current matches = " + matches);
             List<Match> extendedMatches = new ArrayList<Match>();
             for (Match match : matches) {
                 TreeI childPattern = pattern.getChild(match);
                 // extend the match
                 if (nodeMatcher.match(childPattern, childStructure)) {
-                    match.add(childStructure);
-                    extend(match, childPattern, childStructure, extendedMatches);
+                    Match matchCopy = match.extend(childStructure);
+                    extend(matchCopy, childPattern, childStructure, extendedMatches);
                 } else {
                     // if it can't be extended, carry it over unchanged
-                    extendedMatches.add(match);
+//                    extendedMatches.add(match);
                 }
             }
             
             // only those matches that have been extended are saved
-            matches = extendedMatches;
+//            matches = extendedMatches;
+            matches.addAll(extendedMatches);
             
             // create new matches
             TreeI childPattern = pattern.first();
+            System.out.println("trying new match " + childPattern.getID());
             if (nodeMatcher.match(childPattern, childStructure)) {
                 Match match = new Match(childStructure);
                 System.out.println("new match " + match);
@@ -57,14 +60,21 @@ public class LeafListMatcher implements MatcherI<AbstractLeafList> {
 
     public void extend(Match match, TreeI childPattern, 
                        TreeI childStructure, List<Match> matchList) {
-        if (subMatcher == null) return;
+        if (subMatcher == null) {
+            matchList.add(match);
+            System.out.println("submatcher null, returning");
+            return;
+        }
         List<Match> subMatches = subMatcher.match(
                 childPattern.getLeaves(), childStructure.getLeaves());
         if (subMatches.size() == 0) {
+            System.out.println("match not extended " + match);
             matchList.add(match);
         } else {
             for (Match extension : subMatches) {
-                matchList.add(match.extend(extension));
+                Match extended = match.extend(extension); 
+                System.out.println("match extended " + extended);
+                matchList.add(extended);
             }
         }
     }

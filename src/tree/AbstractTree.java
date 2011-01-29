@@ -57,5 +57,9 @@ public abstract class AbstractTree implements TreeI {
             leafCollection.accept(visitor);
         }
     }
+    
+    public String toString() {
+        return getTypeName() + " " + label;
+    }
 
 }

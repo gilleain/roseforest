@@ -12,7 +12,7 @@ public class DescriptionList extends AbstractLeafList {
 
     @Override
     public void visit(VisitorI visitor) {
-        System.out.println("visiting description list");
+//        System.out.println("visiting description list");
     }
 
 }

@@ -46,12 +46,12 @@ public class TestMixedHierarchies {
         LeafCollectionI atomSet = new AtomSet();
         atomSet.addLeaf(atom);
         
-        TreeI residue = new Residue();
+        TreeI residue = new Residue("Y");
         residue.addLeaves(atomSet);
         LeafCollectionI residueList = new ResidueList();
         residueList.addLeaf(residue);
         
-        TreeI sse = new SSE();
+        TreeI sse = new SSE("H");
         sse.addLeaves(residueList);
         LeafCollectionI sseList = new SSEList();
         sseList.addLeaf(sse);

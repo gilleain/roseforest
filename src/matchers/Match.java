@@ -37,4 +37,10 @@ public class Match {
         return ids.toString();
     }
 
+    public Match extend(TreeI structure) {
+        Match copy = new Match(this);
+        copy.add(structure);
+        return copy;
+    }
+
 }
