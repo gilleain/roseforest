@@ -31,6 +31,10 @@ public abstract class AbstractLeafCollection implements LeafCollectionI {
         return count;
     }
     
+    public int size() {
+        return leaves.size();
+    }
+    
     public abstract void visit(VisitorI visitor);
 
     @Override

@@ -50,8 +50,17 @@ public class LeafListMatcher implements MatcherI<AbstractLeafList> {
                 extend(match, childPattern, childStructure, matches);
             }
         }
-        System.out.println(matches);
-        return matches;
+        
+        // finally, reject matches that are not long enough
+        List<Match> longEnoughMatches = new ArrayList<Match>();
+        for (Match match : matches) {
+            if (match.size() >= pattern.size()) {
+                longEnoughMatches.add(match);
+            }
+        }
+        
+        System.out.println(longEnoughMatches);
+        return longEnoughMatches;
     }
 
     public void extend(Match match, TreeI childPattern, 

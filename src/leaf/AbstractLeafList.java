@@ -50,7 +50,7 @@ public abstract class AbstractLeafList implements LeafCollectionI {
     }
     
     public TreeI getChild(Match match) {
-        int size = match.getSize();
+        int size = match.size();
         // faster lookup if leaves were a linked list
         int targetIndex = leaves.get(0).getID() + size;
         for (TreeI leaf : leaves) {
@@ -59,6 +59,10 @@ public abstract class AbstractLeafList implements LeafCollectionI {
             }
         }
         return null;
+    }
+
+    public int size() {
+        return leaves.size();
     }
 
 }

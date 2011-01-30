@@ -39,7 +39,7 @@ public class Match {
         return copy;
     }
 
-    public int getSize() {
+    public int size() {
         return ids.size();
     }
 
